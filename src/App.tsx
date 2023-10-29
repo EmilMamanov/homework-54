@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Grid from './Grid';
 
-function App() {
-  const [count, setCount] = useState(0)
+function createItems() {
+    const items = [];
+    const ringIndex = Math.floor(Math.random() * 36);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    for (let i = 0; i < 36; i++) {
+        items.push({ hasItem: i === ringIndex, clicked: false });
+    }
+
+    return items;
 }
 
-export default App
+function App() {
+    const [items, setItems] = useState(createItems());
+    const [attempts, setAttempts] = useState(0);
+
+    const resetGame = () => {
+        const newItems = createItems();
+        setItems(newItems);
+        setAttempts(0);
+    };
+
+    const handleCellClick = (index: number) => {
+        if (!items[index].clicked) {
+            setAttempts(attempts + 1);
+            const newItems = [...items];
+            newItems[index].clicked = true;
+            setItems(newItems);
+        }
+    };
+
+    return (
+        <div className="App">
+            <h1>Найди кольцо</h1>
+            <Grid items={items} onCellClick={handleCellClick} />
+            <p>Попытки: {attempts}</p>
+            <button onClick={resetGame}>Заново</button>
+        </div>
+    );
+}
+
+export default App;
