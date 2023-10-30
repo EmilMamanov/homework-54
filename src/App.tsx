@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
-import Grid from './Grid';
+import Grid from './components/Grid/Grid';
+import ResetButton from './components/ResetButton/ResetButton';
 
 function createItems() {
     const items = [];
@@ -17,7 +18,7 @@ function App() {
     const [items, setItems] = useState(createItems());
     const [attempts, setAttempts] = useState(0);
 
-    const resetGame = () => {
+    const resetGameHandler = () => {
         const newItems = createItems();
         setItems(newItems);
         setAttempts(0);
@@ -37,7 +38,7 @@ function App() {
             <h1>Найди кольцо</h1>
             <Grid items={items} onCellClick={handleCellClick} />
             <p>Попытки: {attempts}</p>
-            <button onClick={resetGame}>Заново</button>
+            <ResetButton onClick={resetGameHandler} />
         </div>
     );
 }

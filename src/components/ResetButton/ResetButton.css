@@ -1,0 +1,12 @@
+.ResetButton {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.ResetButton:hover {
+    background-color: darkred;
+}

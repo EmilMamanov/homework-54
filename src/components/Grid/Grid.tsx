@@ -1,6 +1,6 @@
 import React from 'react';
-import Cell from './Cell';
-import './App.css';
+import Cell from '../Cell/Cell';
+import './Grid.css';
 
 interface GridProps {
     items: Array<{ hasItem: boolean; clicked: boolean }>;
