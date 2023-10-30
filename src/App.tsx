@@ -4,7 +4,7 @@ import Grid from './components/Grid/Grid';
 
 import GameOverMessage from './components/GameOverMessage/GameOverMessage';
 import ResetButton from './components/ResetButton/ResetButton';
-import AttemptCounter from './components/AttemptCounter/AttemptCounter.tsx';
+import AttemptCounter from './components/AttemptCounter/AttemptCounter';
 
 
 function createItems() {
