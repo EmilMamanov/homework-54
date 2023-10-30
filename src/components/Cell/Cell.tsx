@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Cell.css';
 
 interface CellProps {
@@ -8,10 +8,19 @@ interface CellProps {
 }
 
 const Cell: React.FC<CellProps> = ({ hasItem, clicked, onClick }) => {
+    const [cellClass, setCellClass] = useState('cell');
+
+    const handleCellClick = () => {
+        if (hasItem && !clicked) {
+            setCellClass('cell clicked');
+        }
+        onClick();
+    };
+
     return (
         <div
-            className={`cell ${clicked ? 'clicked' : ''}`}
-            onClick={() => onClick()}
+            className={`${cellClass} ${clicked ? 'clicked' : ''}`}
+            onClick={handleCellClick}
         >
             {clicked && hasItem ? 'O' : ''}
         </div>

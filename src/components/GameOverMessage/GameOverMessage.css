@@ -1,0 +1,6 @@
+.game-over-message {
+    padding: 20px;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 10px;
+}

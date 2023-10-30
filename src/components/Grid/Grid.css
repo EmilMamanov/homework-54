@@ -1,7 +1,6 @@
-
 .grid {
     display: flex;
     max-width: 168px;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin: 0 auto 20px;
 }

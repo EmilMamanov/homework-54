@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import './App.css';
 import Grid from './components/Grid/Grid';
+
+import GameOverMessage from './components/GameOverMessage/GameOverMessage';
 import ResetButton from './components/ResetButton/ResetButton';
+import AttemptCounter from './components/AttemptCounter/AttemptCounter.tsx';
+
 
 function createItems() {
     const items = [];
@@ -17,11 +21,13 @@ function createItems() {
 function App() {
     const [items, setItems] = useState(createItems());
     const [attempts, setAttempts] = useState(0);
+    const [gameOver, setGameOver] = useState(false);
 
-    const resetGameHandler = () => {
+    const resetGame = () => {
         const newItems = createItems();
         setItems(newItems);
         setAttempts(0);
+        setGameOver(false);
     };
 
     const handleCellClick = (index: number) => {
@@ -30,15 +36,25 @@ function App() {
             const newItems = [...items];
             newItems[index].clicked = true;
             setItems(newItems);
+
+            if (items[index].hasItem) {
+                setGameOver(true);
+            }
         }
     };
 
     return (
         <div className="App">
             <h1>Найди кольцо</h1>
-            <Grid items={items} onCellClick={handleCellClick} />
-            <p>Попытки: {attempts}</p>
-            <ResetButton onClick={resetGameHandler} />
+            {gameOver ? (
+                <GameOverMessage attempts={attempts} onReset={resetGame} />
+            ) : (
+                <>
+                    <Grid items={items} onCellClick={handleCellClick} />
+                    <ResetButton onReset={resetGame} />
+                    <AttemptCounter attempts={attempts} />
+                </>
+            )}
         </div>
     );
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import './ResetButton.css';
 
 interface ResetButtonProps {
-    onClick: () => void;
+    onReset: () => void;
 }
 
-const ResetButton: React.FC<ResetButtonProps> = ({ onClick }) => {
+const ResetButton: React.FC<ResetButtonProps> = ({ onReset }) => {
     return (
-        <button className="ResetButton" onClick={onClick}>Заново</button>
+        <button className="ResetButton" onClick={onReset}>Заново</button>
     );
 }
 

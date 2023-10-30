@@ -1,8 +1,15 @@
-
 .cell {
     width: 25px;
     height: 25px;
     background-color: white;
+    border: 1px solid red;
+    color: gold;
+}
+
+.clicked {
+    background-color: black;
+    width: 25px;
+    height: 25px;
     border: 1px solid red;
     color: gold;
 }
